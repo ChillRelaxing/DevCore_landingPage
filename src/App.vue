@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
+import Testimonials from './components/Testimonials.vue'
+import Stats from './components/Stats.vue'
 
 const isDark = ref(
   typeof window !== 'undefined' && (
@@ -39,7 +41,9 @@ const navLinks = [
   { name: 'Servicios', id: 'servicios' },
   { name: 'Industria', id: 'industria' },
   { name: 'Sobre nosotros', id: 'nosotros' },
+  { name: 'Estadísticas', id: 'estadisticas' },
   { name: 'Proyectos', id: 'proyectos' },
+  { name: 'Testimonios', id: 'testimonios' },
   { name: 'Trabaja para nosotros', id: 'carreras' },
   { name: 'Perspectivas', id: 'perspectivas' },
 ]
@@ -47,10 +51,10 @@ const navLinks = [
 const services = [
   { title: 'Desarrollo Web Custom', description: 'Creamos plataformas robustas y escalables utilizando las últimas tecnologías.', icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4' },
   { title: 'Apps Móviles', description: 'Experiencias nativas e híbridas de alto rendimiento para iOS y Android.', icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z' },
-  { title: 'Inteligencia Artificial', description: 'Integramos modelos de ML y GenAI para optimizar tus procesos de negocio.', icon: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z' },
+  { title: 'Infraestructura Cloud', description: 'Implementación de servidores, despliegue continuo y arquitectura escalable.', icon: 'M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01' },
 ]
 
-const industries = ['Fintech', 'Healthcare', 'E-commerce', 'EdTech', 'Logistics', 'Real Estate']
+const industries = ['DTE-System', 'E-commerce', 'Logistics', 'Big data']
 
 const projects = [
   { name: 'Nexus Bank', category: 'Fintech', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800' },
@@ -188,9 +192,6 @@ const submitContactForm = async () => {
             <button @click="scrollToSection('proyectos')" class="px-8 py-4 rounded-2xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition shadow-2xl shadow-indigo-500/40 hover:-translate-y-1">
               Ver Proyectos
             </button>
-            <button class="px-8 py-4 rounded-2xl border dark:border-slate-700 border-slate-300 font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-              Nuestra Metodología
-            </button>
           </div>
         </div>
         <div class="flex-1 relative">
@@ -223,10 +224,12 @@ const submitContactForm = async () => {
             <p class="dark:text-slate-400 text-slate-600 leading-relaxed mb-6">
               {{ service.description }}
             </p>
+            <!--
             <a href="#" class="text-indigo-500 font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
               Saber más
               <span>→</span>
             </a>
+            -->
           </div>
         </div>
       </div>
@@ -270,12 +273,12 @@ const submitContactForm = async () => {
           <div class="flex-1 grid grid-cols-2 gap-4">
             <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600" class="rounded-3xl h-64 w-full object-cover" />
             <div class="bg-indigo-600 rounded-3xl h-64 flex flex-col items-center justify-center p-6 text-white text-center">
-              <span class="text-5xl font-black">10+</span>
-              <span class="text-sm font-bold uppercase tracking-widest mt-2">Años de experiencia</span>
+              <span class="text-5xl font-black"><img class="invert" src="/img/calidad.png" width="100px" alt=""></span>
+              <!--<span class="text-sm font-bold uppercase tracking-widest mt-2"></span>-->
             </div>
             <div class="bg-slate-200 dark:bg-slate-800 rounded-3xl h-64 flex flex-col items-center justify-center p-6 text-center">
-              <span class="text-5xl font-black">150+</span>
-              <span class="text-sm font-bold uppercase tracking-widest mt-2">Expertos</span>
+              <span class="text-5xl font-black"><img class="[filter:invert(31%)_sepia(97%)_saturate(5580%)_hue-rotate(242deg)_brightness(95%)_contrast(92%)]" src="/img/codigo.png" width="100px" alt=""></span>
+              <!--<span class="text-sm font-bold uppercase tracking-widest mt-2"></span>-->
             </div>
             <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=600" class="rounded-3xl h-64 w-full object-cover" />
           </div>
@@ -337,6 +340,8 @@ const submitContactForm = async () => {
       </div>
     </section>
 
+    <Stats />
+
     <!-- Projects Section -->
     <section id="proyectos" class="py-24 dark:bg-slate-900/30 bg-slate-100">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -364,6 +369,9 @@ const submitContactForm = async () => {
         </div>
       </div>
     </section>
+
+    <!-- Testimonials Section -->
+    <Testimonials />
 
     <!-- Careers Section -->
     <section id="carreras" class="py-24">
@@ -450,7 +458,7 @@ const submitContactForm = async () => {
                 </div>
                 <div>
                   <p class="text-sm text-indigo-200 font-bold uppercase">Email</p>
-                  <p class="font-bold">hola@devcore.tech</p>
+                  <p class="font-bold">devcore@gmail.com</p>
                 </div>
               </div>
               <div class="flex items-center gap-4">
@@ -462,7 +470,7 @@ const submitContactForm = async () => {
                 </div>
                 <div>
                   <p class="text-sm text-indigo-200 font-bold uppercase">Oficina</p>
-                  <p class="font-bold">Silicon Valley, CA</p>
+                  <p class="font-bold">2ª Calle Oriente y 2ª Avenida Norte, San Miguel Centro.</p>
                 </div>
               </div>
             </div>
@@ -511,7 +519,7 @@ const submitContactForm = async () => {
     <!-- Footer -->
     <footer class="dark:bg-slate-950 bg-slate-900 text-white pt-20 pb-10 border-t dark:border-slate-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
           <div class="col-span-1 lg:col-span-1">
             <div class="flex items-center gap-2 mb-6">
               <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-black text-lg">
@@ -546,16 +554,8 @@ const submitContactForm = async () => {
               <li><a href="#" class="hover:text-white transition">Desarrollo Web</a></li>
               <li><a href="#" class="hover:text-white transition">Cloud & DevOps</a></li>
               <li><a href="#" class="hover:text-white transition">Diseño UI/UX</a></li>
-              <li><a href="#" class="hover:text-white transition">AI & Machine Learning</a></li>
+              <li><a href="#" class="hover:text-white transition">Desarrollo Movil</a></li>
             </ul>
-          </div>
-          <div>
-            <h4 class="font-bold mb-6">Newsletter</h4>
-            <p class="text-slate-400 text-sm mb-4">Suscríbete para recibir noticias y tendencias tech.</p>
-            <div class="flex gap-2">
-               <input type="email" placeholder="email@ejemplo.com" class="bg-slate-800 border-none rounded-lg px-4 py-2 text-sm w-full focus:ring-2 focus:ring-indigo-500" />
-               <button class="bg-indigo-600 px-4 py-2 rounded-lg text-sm font-bold">Ok</button>
-            </div>
           </div>
         </div>
         <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
