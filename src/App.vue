@@ -101,7 +101,8 @@ const submitContactForm = async () => {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-18 items-center">
           <div class="flex items-center gap-2 cursor-pointer group" @click="scrollToSection('hero')">
-            <img src="./assets/logo/logo.png" width="150px" alt="DevCore Logo" class="h-10 w-auto transition-transform group-hover:scale-105 dark:invert dark:hue-rotate-180" />
+            <img src="./assets/logo/logoOficial2.png" width="150px" alt="DevCore Logo" class="h-10 w-auto transition-transform group-hover:scale-105 dark:invert dark:hue-rotate-180" />
+            <span class="text-2xl font-black tracking-tighter dark:text-white text-slate-900 transition-colors">DEVCORE</span>
           </div>
 
           <!-- Desktop Links -->
@@ -511,7 +512,8 @@ const submitContactForm = async () => {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
           <div class="col-span-1 lg:col-span-1">
             <div class="flex items-center gap-2 mb-6">
-              <img src="./assets/logo/logo.png" alt="DevCore Logo" class="h-10 w-auto invert hue-rotate-180" />
+              <img src="./assets/logo/logoOficial2.png" alt="DevCore Logo" class="h-10 w-auto invert hue-rotate-180" />
+              <span class="text-2xl font-black tracking-tighter text-white">DEVCORE</span>
             </div>
             <p class="text-slate-400 text-sm leading-relaxed mb-6">
               Engineering the digital future. Expert software development for visionary companies.
