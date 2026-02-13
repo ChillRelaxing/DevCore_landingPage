@@ -35,14 +35,14 @@ const testimonials: Testimonial[] = [
 <template>
   <section id="testimonios" class="py-24 relative overflow-hidden">
     <!-- Decorative background elements -->
-    <div class="absolute top-0 right-0 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl -z-10"></div>
+    <div class="absolute top-0 right-0 w-96 h-96 bg-sky-500/5 rounded-full blur-3xl -z-10"></div>
     <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl -z-10"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-indigo-500 font-bold uppercase tracking-widest text-sm mb-3">Testimonios</h2>
+        <h2 class="text-sky-500 font-bold uppercase tracking-widest text-sm mb-3">Testimonios</h2>
         <p class="text-4xl font-black mb-4 dark:text-white text-slate-900">Lo que dicen de nosotros</p>
-        <div class="w-20 h-1.5 bg-indigo-600 mx-auto rounded-full"></div>
+        <div class="w-20 h-1.5 bg-sky-600 mx-auto rounded-full"></div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -73,7 +73,7 @@ const testimonials: Testimonial[] = [
             <img 
               :src="testimonial.image" 
               :alt="testimonial.name"
-              class="w-12 h-12 rounded-full object-cover ring-2 ring-indigo-500/20"
+              class="w-12 h-12 rounded-full object-cover ring-2 ring-sky-500/20"
             />
             <div>
               <h4 class="font-bold dark:text-white text-slate-900">{{ testimonial.name }}</h4>

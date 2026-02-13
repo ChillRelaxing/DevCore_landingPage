@@ -8,7 +8,7 @@ const stats = [
 </script>
 
 <template>
-  <section id="estadisticas" class="py-20 bg-indigo-600 dark:bg-indigo-900/20">
+  <section id="estadisticas" class="py-20 bg-sky-600 dark:bg-sky-900/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
         <div v-for="stat in stats" :key="stat.label" class="text-center group">
@@ -18,7 +18,7 @@ const stats = [
             </svg>
           </div>
           <div class="text-3xl md:text-5xl font-black text-white mb-2">{{ stat.value }}</div>
-          <div class="text-indigo-100 dark:text-indigo-300 font-medium uppercase tracking-wider text-xs md:text-sm">{{ stat.label }}</div>
+          <div class="text-sky-100 dark:text-sky-300 font-medium uppercase tracking-wider text-xs md:text-sm">{{ stat.label }}</div>
         </div>
       </div>
     </div>
