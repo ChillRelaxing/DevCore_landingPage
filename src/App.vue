@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n'
 import Testimonials from './components/Testimonials.vue'
 import Stats from './components/Stats.vue'
 
-const { locale, t } = useI18n()
+const { locale } = useI18n()
 
 const isDark = ref(
   typeof window !== 'undefined' && (
