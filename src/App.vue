@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import Testimonials from './components/Testimonials.vue'
 import Stats from './components/Stats.vue'
+
+const { locale, t } = useI18n()
 
 const isDark = ref(
   typeof window !== 'undefined' && (
@@ -10,6 +13,18 @@ const isDark = ref(
   )
 )
 const mobileMenuOpen = ref(false)
+
+const toggleLanguage = () => {
+  locale.value = locale.value === 'es' ? 'en' : 'es'
+  localStorage.setItem('lang', locale.value)
+}
+
+onMounted(() => {
+  const savedLang = localStorage.getItem('lang')
+  if (savedLang) {
+    locale.value = savedLang
+  }
+})
 
 watch(isDark, (val) => { 
   if (val) {
@@ -20,10 +35,6 @@ watch(isDark, (val) => {
     localStorage.setItem('theme', 'light')
   }
 }, { immediate: true })
-
-onMounted(() => {
-  // Theme is already initialized by the watch with immediate: true
-})
 
 const toggleDarkMode = () => {
   isDark.value = !isDark.value
@@ -38,23 +49,23 @@ const scrollToSection = (id: string) => {
 }
 
 const navLinks = [
-  { name: 'Servicios', id: 'servicios' },
-  { name: 'Industria', id: 'industria' },
-  { name: 'Sobre nosotros', id: 'nosotros' },
-  { name: 'Estadísticas', id: 'estadisticas' },
-  { name: 'Proyectos', id: 'proyectos' },
-  { name: 'Testimonios', id: 'testimonios' },
-  { name: 'Trabaja para nosotros', id: 'carreras' },
-  { name: 'Perspectivas', id: 'perspectivas' },
+  { name: 'nav.services', id: 'servicios' },
+  { name: 'nav.industry', id: 'industria' },
+  { name: 'nav.about', id: 'nosotros' },
+  { name: 'nav.stats', id: 'estadisticas' },
+  { name: 'nav.projects', id: 'proyectos' },
+  { name: 'nav.testimonials', id: 'testimonios' },
+  { name: 'nav.careers', id: 'empleos' },
+  { name: 'nav.insights', id: 'perspectivas' },
 ]
 
 const services = [
-  { title: 'Desarrollo Web Custom', description: 'Creamos plataformas robustas y escalables utilizando las últimas tecnologías.', icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4' },
-  { title: 'Apps Móviles', description: 'Experiencias nativas e híbridas de alto rendimiento para iOS y Android.', icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z' },
-  { title: 'Infraestructura Cloud', description: 'Implementación de servidores, despliegue continuo y arquitectura escalable.', icon: 'M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01' },
+  { title: 'services.web.title', description: 'services.web.description', icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4' },
+  { title: 'services.mobile.title', description: 'services.mobile.description', icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z' },
+  { title: 'services.cloud.title', description: 'services.cloud.description', icon: 'M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01' },
 ]
 
-const industries = ['DTE-System', 'E-commerce', 'Logistics', 'Big data']
+const industries = ['industries.items.dte', 'industries.items.ecommerce', 'industries.items.logistics', 'industries.items.bigdata']
 
 const projects = [
   { name: 'Nexus Bank', category: 'Fintech', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800' },
@@ -91,6 +102,27 @@ const submitContactForm = async () => {
     showSuccess.value = false
   }, 5000)
 }
+
+const posts = [
+  {
+    category: 'Tecnología',
+    title: 'insights.posts.wasm.title',
+    description: 'insights.posts.wasm.description',
+    img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800'
+  },
+  {
+    category: 'Cultura',
+    title: 'insights.posts.remote.title',
+    description: 'insights.posts.remote.description',
+    img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800'
+  },
+  {
+    category: 'Tutorial',
+    title: 'insights.posts.nestjs.title',
+    description: 'insights.posts.nestjs.description',
+    img: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800'
+  }
+]
 </script>
 
 <template>
@@ -99,18 +131,27 @@ const submitContactForm = async () => {
     <!-- Navbar -->
     <nav class="fixed w-full z-50 backdrop-blur-lg border-b dark:border-slate-800 border-slate-200 dark:bg-slate-950/80 bg-white/80">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-18 items-center">
+        <div class="flex justify-between h-18 items-center gap-4">
           <div class="flex items-center gap-2 cursor-pointer group" @click="scrollToSection('hero')">
             <img src="./assets/logo/logoOficial2.png" width="150px" alt="DevCore Logo" class="h-10 w-auto transition-transform group-hover:scale-105 dark:invert dark:hue-rotate-180" />
             <span class="text-2xl font-black tracking-tighter dark:text-white text-slate-900 transition-colors">DEVCORE</span>
           </div>
 
           <!-- Desktop Links -->
-          <div class="hidden lg:flex space-x-6 items-center">
+          <div class="hidden xl:flex space-x-4 items-center">
             <button v-for="link in navLinks" :key="link.id" @click="scrollToSection(link.id)" class="text-sm font-medium dark:text-slate-400 text-slate-600 hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
-              {{ link.name }}
+              {{ $t(link.name) }}
             </button>
             <div class="h-6 w-px dark:bg-slate-800 bg-slate-200"></div>
+            
+            <!-- Language Switcher -->
+            <button @click="toggleLanguage" class="flex items-center gap-1 text-sm font-bold dark:text-slate-400 text-slate-600 hover:text-sky-600 transition-colors uppercase">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 11.37 9.183 16.635 5.8 21" />
+              </svg>
+              {{ locale === 'es' ? 'EN' : 'ES' }}
+            </button>
+
             <button @click="toggleDarkMode" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
               <svg v-if="isDark" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -120,12 +161,15 @@ const submitContactForm = async () => {
               </svg>
             </button>
             <button @click="scrollToSection('contacto')" class="bg-sky-600 hover:bg-sky-700 text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-lg shadow-sky-500/25 text-sm">
-              Contactar
+              {{ $t('nav.contact') }}
             </button>
           </div>
 
           <!-- Mobile Toggle -->
-          <div class="lg:hidden flex items-center gap-4">
+          <div class="xl:hidden flex items-center gap-4">
+            <button @click="toggleLanguage" class="text-sm font-bold dark:text-slate-400 text-slate-600 uppercase">
+              {{ locale === 'es' ? 'EN' : 'ES' }}
+            </button>
             <button @click="toggleDarkMode" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
               <svg v-if="isDark" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -146,14 +190,14 @@ const submitContactForm = async () => {
 
       <!-- Mobile Menu -->
       <transition enter-active-class="transition duration-200 ease-out" enter-from-class="opacity-0 -translate-y-4" enter-to-class="opacity-100 translate-y-0" leave-active-class="transition duration-150 ease-in" leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 -translate-y-4">
-        <div v-if="mobileMenuOpen" class="lg:hidden dark:bg-slate-950 bg-white border-b dark:border-slate-800 border-slate-200">
+        <div v-if="mobileMenuOpen" class="xl:hidden dark:bg-slate-950 bg-white border-b dark:border-slate-800 border-slate-200">
           <div class="px-4 pt-4 pb-6 space-y-2">
             <button v-for="link in navLinks" :key="link.id" @click="scrollToSection(link.id)" class="block w-full text-left px-4 py-3 rounded-xl text-lg font-medium hover:bg-slate-50 dark:hover:bg-sky-900 transition-colors">
-              {{ link.name }}
+              {{ $t(link.name) }}
             </button>
             <div class="pt-4 px-4">
               <button @click="scrollToSection('contacto')" class="w-full bg-sky-600 text-white px-4 py-4 rounded-xl font-bold">
-                Contactar
+                {{ $t('nav.contact') }}
               </button>
             </div>
           </div>
@@ -175,20 +219,20 @@ const submitContactForm = async () => {
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
             </span>
-            CONSTRUYENDO EL FUTURO DIGITAL
+            {{ $t('hero.badge') }}
           </div>
           <h1 class="text-5xl lg:text-7xl font-black tracking-tight mb-6 leading-[1.1]">
-            Ingeniería de <br />
+            {{ $t('hero.title1') }} <br />
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-400">
-              Software de Élite
+              {{ $t('hero.title2') }}
             </span>
           </h1>
           <p class="text-xl dark:text-slate-400 text-slate-600 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-            En DevCore, transformamos ideas complejas en soluciones digitales excepcionales. Desde startups disruptivas hasta empresas globales, potenciamos tu crecimiento con tecnología de vanguardia.
+            {{ $t('hero.description') }}
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <button @click="scrollToSection('proyectos')" class="px-8 py-4 rounded-2xl bg-sky-600 text-white font-bold hover:bg-sky-700 transition shadow-2xl shadow-sky-500/40 hover:-translate-y-1">
-              Ver Proyectos
+              {{ $t('hero.cta') }}
             </button>
           </div>
         </div>
@@ -206,8 +250,8 @@ const submitContactForm = async () => {
     <section id="servicios" class="py-24 relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-20">
-          <h2 class="text-sky-500 font-bold uppercase tracking-widest text-sm mb-3">Servicios</h2>
-          <p class="text-4xl font-black mb-4">Soluciones End-to-End</p>
+          <h2 class="text-sky-500 font-bold uppercase tracking-widest text-sm mb-3">{{ $t('services.badge') }}</h2>
+          <p class="text-4xl font-black mb-4">{{ $t('services.title') }}</p>
           <div class="w-20 h-1.5 bg-sky-600 mx-auto rounded-full"></div>
         </div>
 
@@ -218,9 +262,9 @@ const submitContactForm = async () => {
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" :d="service.icon" />
               </svg>
             </div>
-            <h3 class="text-2xl font-bold mb-4">{{ service.title }}</h3>
+            <h3 class="text-2xl font-bold mb-4">{{ $t(service.title) }}</h3>
             <p class="dark:text-slate-400 text-slate-600 leading-relaxed mb-6">
-              {{ service.description }}
+              {{ $t(service.description) }}
             </p>
           </div>
         </div>
@@ -232,17 +276,17 @@ const submitContactForm = async () => {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col lg:flex-row items-center gap-16">
           <div class="flex-1">
-            <h2 class="text-sky-300 font-bold uppercase tracking-widest text-sm mb-3">Industrias</h2>
-            <p class="text-4xl font-black mb-6 leading-tight">Expertos en mercados verticales de alta demanda</p>
+            <h2 class="text-sky-300 font-bold uppercase tracking-widest text-sm mb-3">{{ $t('industries.badge') }}</h2>
+            <p class="text-4xl font-black mb-6 leading-tight">{{ $t('industries.title') }}</p>
             <p class="text-sky-100 mb-8 text-lg opacity-80">
-              Entendemos los retos específicos de cada sector. Nuestra experiencia nos permite acelerar el desarrollo con arquitecturas probadas y adaptadas a las regulaciones de cada industria.
+              {{ $t('industries.description') }}
             </p>
             <div class="grid grid-cols-2 gap-4">
               <div v-for="industry in industries" :key="industry" class="flex items-center gap-3 bg-white/10 px-5 py-3 rounded-xl backdrop-blur-sm border border-white/10 hover:bg-white/20 transition-colors">
                 <svg class="w-5 h-5 text-sky-300" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                 </svg>
-                <span class="font-medium">{{ industry }}</span>
+                <span class="font-medium">{{ $t(industry) }}</span>
               </div>
             </div>
           </div>
@@ -273,10 +317,10 @@ const submitContactForm = async () => {
             <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=600" class="rounded-3xl h-64 w-full object-cover" />
           </div>
           <div class="flex-1">
-            <h2 class="text-sky-500 font-bold uppercase tracking-widest text-sm mb-3">Sobre Nosotros</h2>
-            <h3 class="text-4xl font-black mb-6">Obsesionados con la Calidad y el Código Limpio</h3>
+            <h2 class="text-sky-500 font-bold uppercase tracking-widest text-sm mb-3">{{ $t('about.badge') }}</h2>
+            <h3 class="text-4xl font-black mb-6">{{ $t('about.title') }}</h3>
             <p class="text-lg dark:text-slate-400 text-slate-600 mb-8 leading-relaxed">
-              DevCore nació con una misión clara: elevar el estándar del desarrollo de software en la región. No somos solo una agencia, somos un socio tecnológico comprometido con el éxito a largo plazo de nuestros clientes.
+              {{ $t('about.description') }}
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
@@ -285,10 +329,10 @@ const submitContactForm = async () => {
                   <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
-                  Misión
+                  {{ $t('about.mission.title') }}
                 </h4>
                 <p class="text-sm dark:text-slate-400 text-slate-600 leading-relaxed">
-                  Impulsar la transformación digital mediante soluciones tecnológicas innovadoras, escalables y de alta calidad que generen un impacto real.
+                  {{ $t('about.mission.description') }}
                 </p>
               </div>
               <div class="p-6 rounded-2xl bg-blue-500/5 border border-blue-500/10">
@@ -297,10 +341,10 @@ const submitContactForm = async () => {
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                   </svg>
-                  Visión
+                  {{ $t('about.vision.title') }}
                 </h4>
                 <p class="text-sm dark:text-slate-400 text-slate-600 leading-relaxed">
-                  Ser el socio tecnológico líder global, reconocido por la excelencia en ingeniería y la capacidad de resolver los desafíos más complejos.
+                  {{ $t('about.vision.description') }}
                 </p>
               </div>
             </div>
@@ -311,8 +355,8 @@ const submitContactForm = async () => {
                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M5 13l4 4L19 7" stroke-width="3"/></svg>
                 </div>
                 <div>
-                  <h4 class="font-bold">Mentalidad Product-First</h4>
-                  <p class="dark:text-slate-500 text-slate-500 text-sm">No solo escribimos código, entendemos tu modelo de negocio.</p>
+                  <h4 class="font-bold">{{ $t('about.productFirst.title') }}</h4>
+                  <p class="dark:text-slate-500 text-slate-500 text-sm">{{ $t('about.productFirst.description') }}</p>
                 </div>
               </li>
               <li class="flex items-start gap-4">
@@ -320,8 +364,8 @@ const submitContactForm = async () => {
                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M5 13l4 4L19 7" stroke-width="3"/></svg>
                 </div>
                 <div>
-                  <h4 class="font-bold">Metodologías Ágiles Reales</h4>
-                  <p class="dark:text-slate-500 text-slate-500 text-sm">Entregas incrementales cada dos semanas para máxima visibilidad.</p>
+                  <h4 class="font-bold">{{ $t('about.agile.title') }}</h4>
+                  <p class="dark:text-slate-500 text-slate-500 text-sm">{{ $t('about.agile.description') }}</p>
                 </div>
               </li>
             </ul>
@@ -337,10 +381,10 @@ const submitContactForm = async () => {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row justify-between items-end mb-16">
           <div>
-            <h2 class="text-sky-500 font-bold uppercase tracking-widest text-sm mb-3">Portafolio</h2>
-            <p class="text-4xl font-black">Proyectos Destacados</p>
+            <h2 class="text-sky-500 font-bold uppercase tracking-widest text-sm mb-3">{{ $t('projects.badge') }}</h2>
+            <p class="text-4xl font-black">{{ $t('projects.title') }}</p>
           </div>
-          <button class="hidden md:block text-sky-500 font-bold hover:underline">Ver todos los casos de éxito →</button>
+          <button class="hidden md:block text-sky-500 font-bold hover:underline">{{ $t('projects.viewAll') }} →</button>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -364,17 +408,17 @@ const submitContactForm = async () => {
     <Testimonials />
 
     <!-- Careers Section -->
-    <section id="carreras" class="py-24">
+    <section id="empleos" class="py-24">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div class="bg-gradient-to-br from-sky-600 to-blue-700 rounded-[3rem] p-12 lg:p-20 text-white shadow-2xl relative overflow-hidden">
           <div class="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div class="relative z-10">
-            <h2 class="text-4xl lg:text-5xl font-black mb-8 leading-tight">¿Eres un apasionado del código?</h2>
+            <h2 class="text-4xl lg:text-5xl font-black mb-8 leading-tight">{{ $t('careers.title') }}</h2>
             <p class="text-xl text-sky-100 mb-10 max-w-2xl mx-auto opacity-90">
-              Estamos buscando talento excepcional para unirse a nuestra revolución tecnológica. Trabaja de forma remota, con los mejores beneficios y un equipo que te desafiará cada día.
+              {{ $t('careers.description') }}
             </p>
             <button class="bg-white text-sky-600 px-10 py-4 rounded-2xl font-black hover:bg-slate-100 transition shadow-xl">
-              Ver Vacantes Abiertas
+              {{ $t('careers.cta') }}
             </button>
           </div>
         </div>
@@ -385,39 +429,19 @@ const submitContactForm = async () => {
     <section id="perspectivas" class="py-24">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-sky-500 font-bold uppercase tracking-widest text-sm mb-3">Perspectivas</h2>
-          <p class="text-4xl font-black">Blog & Insights</p>
+          <h2 class="text-sky-500 font-bold uppercase tracking-widest text-sm mb-3">{{ $t('insights.badge') }}</h2>
+          <p class="text-4xl font-black">{{ $t('insights.title') }}</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          <div class="group">
+          <div v-for="post in posts" :key="post.title" class="group">
             <div class="rounded-2xl overflow-hidden mb-6 aspect-video">
-              <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:rotate-2 group-hover:scale-105 transition-all duration-500" />
+              <img :src="post.img" class="w-full h-full object-cover group-hover:rotate-2 group-hover:scale-105 transition-all duration-500" />
             </div>
-            <span class="text-sky-500 text-sm font-bold uppercase">Tecnología</span>
-            <h4 class="text-xl font-bold mt-2 mb-4 group-hover:text-sky-500 transition-colors">El impacto de WebAssembly en el desarrollo frontend moderno</h4>
+            <span class="text-sky-500 text-sm font-bold uppercase">{{ post.category }}</span>
+            <h4 class="text-xl font-bold mt-2 mb-4 group-hover:text-sky-500 transition-colors">{{ $t(post.title) }}</h4>
             <p class="dark:text-slate-400 text-slate-600 text-sm leading-relaxed">
-              Exploramos cómo WASM está permitiendo que aplicaciones de alto rendimiento se ejecuten en el navegador...
-            </p>
-          </div>
-          <div class="group">
-            <div class="rounded-2xl overflow-hidden mb-6 aspect-video">
-              <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:rotate-2 group-hover:scale-105 transition-all duration-500" />
-            </div>
-            <span class="text-sky-500 text-sm font-bold uppercase">Cultura</span>
-            <h4 class="text-xl font-bold mt-2 mb-4 group-hover:text-sky-500 transition-colors">Cómo mantenemos la cohesión en equipos 100% remotos</h4>
-            <p class="dark:text-slate-400 text-slate-600 text-sm leading-relaxed">
-              Nuestras mejores prácticas para fomentar la colaboración y el sentido de pertenencia a distancia...
-            </p>
-          </div>
-          <div class="group">
-            <div class="rounded-2xl overflow-hidden mb-6 aspect-video">
-              <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:rotate-2 group-hover:scale-105 transition-all duration-500" />
-            </div>
-            <span class="text-sky-500 text-sm font-bold uppercase">Tutorial</span>
-            <h4 class="text-xl font-bold mt-2 mb-4 group-hover:text-sky-500 transition-colors">Escalando APIs con NestJS y Microservicios</h4>
-            <p class="dark:text-slate-400 text-slate-600 text-sm leading-relaxed">
-              Una guía técnica sobre patrones de diseño para arquitecturas escalables y resilientes...
+              {{ $t(post.description) }}
             </p>
           </div>
         </div>
@@ -434,9 +458,9 @@ const submitContactForm = async () => {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col md:flex-row">
           <div class="flex-1 bg-sky-600 p-12 text-white">
-            <h2 class="text-3xl font-black mb-6">Hablemos de tu próximo gran proyecto</h2>
+            <h2 class="text-3xl font-black mb-6">{{ $t('contact.title') }}</h2>
             <p class="text-sky-100 mb-10 leading-relaxed">
-              Estamos listos para escucharte y convertir tus ideas en realidad. Déjanos un mensaje y nuestro equipo de expertos se pondrá en contacto contigo en menos de 24 horas.
+              {{ $t('contact.description') }}
             </p>
             
             <div class="space-y-6">
@@ -447,7 +471,7 @@ const submitContactForm = async () => {
                   </svg>
                 </div>
                 <div>
-                  <p class="text-sm text-sky-200 font-bold uppercase">Email</p>
+                  <p class="text-sm text-sky-200 font-bold uppercase">{{ $t('contact.email') }}</p>
                   <p class="font-bold">devcore@gmail.com</p>
                 </div>
               </div>
@@ -459,7 +483,7 @@ const submitContactForm = async () => {
                   </svg>
                 </div>
                 <div>
-                  <p class="text-sm text-sky-200 font-bold uppercase">Oficina</p>
+                  <p class="text-sm text-sky-200 font-bold uppercase">{{ $t('contact.office') }}</p>
                   <p class="font-bold">2ª Calle Oriente y 2ª Avenida Norte, San Miguel Centro.</p>
                 </div>
               </div>
@@ -470,24 +494,24 @@ const submitContactForm = async () => {
             <form v-if="!showSuccess" @submit.prevent="submitContactForm" class="space-y-6">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label class="block text-sm font-bold mb-2 ml-1">Nombre</label>
-                  <input v-model="contactForm.name" required type="text" placeholder="Tu nombre" class="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-sky-500 transition-all" />
+                  <label class="block text-sm font-bold mb-2 ml-1">{{ $t('contact.form.name') }}</label>
+                  <input v-model="contactForm.name" required type="text" :placeholder="$t('contact.form.namePlaceholder')" class="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-sky-500 transition-all" />
                 </div>
                 <div>
-                  <label class="block text-sm font-bold mb-2 ml-1">Email</label>
-                  <input v-model="contactForm.email" required type="email" placeholder="tu@email.com" class="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-sky-500 transition-all" />
+                  <label class="block text-sm font-bold mb-2 ml-1">{{ $t('contact.form.email') }}</label>
+                  <input v-model="contactForm.email" required type="email" :placeholder="$t('contact.form.emailPlaceholder')" class="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-sky-500 transition-all" />
                 </div>
               </div>
               <div>
-                <label class="block text-sm font-bold mb-2 ml-1">Mensaje</label>
-                <textarea v-model="contactForm.message" required rows="4" placeholder="¿En qué podemos ayudarte?" class="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-sky-500 transition-all resize-none"></textarea>
+                <label class="block text-sm font-bold mb-2 ml-1">{{ $t('contact.form.message') }}</label>
+                <textarea v-model="contactForm.message" required rows="4" :placeholder="$t('contact.form.messagePlaceholder')" class="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-sky-500 transition-all resize-none"></textarea>
               </div>
               <button :disabled="isSubmitting" type="submit" class="w-full bg-sky-600 text-white py-5 rounded-2xl font-black text-lg hover:bg-sky-700 transition shadow-xl shadow-sky-500/30 flex items-center justify-center gap-3 disabled:opacity-70">
                 <svg v-if="isSubmitting" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                {{ isSubmitting ? 'Enviando...' : 'Enviar Mensaje' }}
+                {{ isSubmitting ? $t('contact.form.sending') : $t('contact.form.submit') }}
               </button>
             </form>
             
@@ -497,9 +521,9 @@ const submitContactForm = async () => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 class="text-2xl font-black mb-2">¡Mensaje Recibido!</h3>
-              <p class="text-slate-500 dark:text-slate-400">Gracias por contactarnos. Te responderemos lo antes posible.</p>
-              <button @click="showSuccess = false" class="mt-8 text-sky-600 font-bold hover:underline">Enviar otro mensaje</button>
+              <h3 class="text-2xl font-black mb-2">{{ $t('contact.form.successTitle') }}</h3>
+              <p class="text-slate-500 dark:text-slate-400">{{ $t('contact.form.successDescription') }}</p>
+              <button @click="showSuccess = false" class="mt-8 text-sky-600 font-bold hover:underline">{{ $t('contact.form.sendAnother') }}</button>
             </div>
           </div>
         </div>
@@ -516,7 +540,7 @@ const submitContactForm = async () => {
               <span class="text-2xl font-black tracking-tighter text-white">DEVCORE</span>
             </div>
             <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              Engineering the digital future. Expert software development for visionary companies.
+              {{ $t('footer.description') }}
             </p>
             <div class="flex gap-4">
                <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-sky-600 transition-colors">
@@ -528,30 +552,32 @@ const submitContactForm = async () => {
             </div>
           </div>
           <div>
-            <h4 class="font-bold mb-6">Compañía</h4>
+            <h4 class="font-bold mb-6">{{ $t('footer.company') }}</h4>
             <ul class="space-y-4 text-slate-400 text-sm">
-              <li><a href="#" @click.prevent="scrollToSection('nosotros')" class="hover:text-white transition">Sobre Nosotros</a></li>
-              <li><a href="#" @click.prevent="scrollToSection('carreras')" class="hover:text-white transition">Carreras</a></li>
-              <li><a href="#" @click.prevent="scrollToSection('proyectos')" class="hover:text-white transition">Casos de Éxito</a></li>
-              <li><a href="#" class="hover:text-white transition">Prensa</a></li>
+              <li><a href="#" @click.prevent="scrollToSection('nosotros')" class="hover:text-white transition">{{ $t('nav.about') }}</a></li>
+              <li><a href="#" @click.prevent="scrollToSection('empleos')" class="hover:text-white transition">{{ $t('nav.careers') }}</a></li>
+              <li><a href="#" @click.prevent="scrollToSection('proyectos')" class="hover:text-white transition">{{ $t('nav.projects') }}</a></li>
+              <li><a href="#" class="hover:text-white transition">{{ $t('nav.news') }}</a></li>
+              <!--<li><a href="#" class="hover:text-white transition">Prensa</a></li>-->
+
             </ul>
           </div>
           <div>
-            <h4 class="font-bold mb-6">Servicios</h4>
+            <h4 class="font-bold mb-6">{{ $t('footer.services') }}</h4>
             <ul class="space-y-4 text-slate-400 text-sm">
-              <li><a href="#" class="hover:text-white transition">Desarrollo Web</a></li>
-              <li><a href="#" class="hover:text-white transition">Cloud & DevOps</a></li>
-              <li><a href="#" class="hover:text-white transition">Diseño UI/UX</a></li>
-              <li><a href="#" class="hover:text-white transition">Desarrollo Movil</a></li>
+              <li><a href="#" class="hover:text-white transition">{{ $t('services.web.title') }}</a></li>
+              <li><a href="#" class="hover:text-white transition">{{ $t('services.cloud.title') }}</a></li>
+              <li><a href="#" class="hover:text-white transition">{{ $t('services.uiux.title') }}</a></li>
+              <li><a href="#" class="hover:text-white transition">{{ $t('services.mobile.title') }}</a></li>
             </ul>
           </div>
         </div>
         <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p class="text-slate-500 text-xs">© 2026 DevCore Inc. Todos los derechos reservados.</p>
+          <p class="text-slate-500 text-xs">{{ $t('footer.rights') }}</p>
           <div class="flex gap-6 text-slate-500 text-xs">
-            <span href="#" class="hover:text-white transition">Términos</span>
-            <span href="#" class="hover:text-white transition">Privacidad</span>
-            <span href="#" class="hover:text-white transition">Cookies</span>
+            <span href="#" class="hover:text-white transition">{{ $t('footer.terms') }}</span>
+            <span href="#" class="hover:text-white transition">{{ $t('footer.privacy') }}</span>
+            <span href="#" class="hover:text-white transition">{{ $t('footer.cookies') }}</span>
           </div>
         </div>
       </div>

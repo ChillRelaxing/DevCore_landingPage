@@ -1,35 +1,21 @@
 <script setup lang="ts">
-interface Testimonial {
-  name: string;
-  role: string;
-  comment: string;
-  rating: number;
-  image: string;
-}
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-const testimonials: Testimonial[] = [
-  {
-    name: 'Ana García',
-    role: 'CEO de Nexus Bank',
-    comment: 'DevCore superó todas nuestras expectativas. Su capacidad técnica es inigualable y entendieron perfectamente nuestra visión desde el primer día.',
-    rating: 5,
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150'
-  },
-  {
-    name: 'Carlos Ruiz',
-    role: 'CTO de HealthSync',
-    comment: 'Un socio tecnológico de verdad. Entregaron el proyecto a tiempo y con una calidad excepcional. El soporte post-lanzamiento ha sido impecable.',
-    rating: 5,
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150'
-  },
-  {
-    name: 'Marta López',
-    role: 'Founder de EcoStream',
-    comment: 'La mejor decisión que tomamos para nuestra infraestructura cloud. Muy recomendados por su profesionalidad y atención al detalle.',
-    rating: 4,
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150'
-  }
-]
+const { tm, rt } = useI18n()
+
+const testimonials = computed(() => {
+  const list = tm('testimonials.list') as any[]
+  return list.map((item, index) => ({
+    ...item,
+    rating: index === 2 ? 4 : 5, // Keeping the same ratings as before
+    image: [
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150',
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150',
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150'
+    ][index]
+  }))
+})
 </script>
 
 <template>
@@ -40,8 +26,8 @@ const testimonials: Testimonial[] = [
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-sky-500 font-bold uppercase tracking-widest text-sm mb-3">Testimonios</h2>
-        <p class="text-4xl font-black mb-4 dark:text-white text-slate-900">Lo que dicen de nosotros</p>
+        <h2 class="text-sky-500 font-bold uppercase tracking-widest text-sm mb-3">{{ $t('testimonials.badge') }}</h2>
+        <p class="text-4xl font-black mb-4 dark:text-white text-slate-900">{{ $t('testimonials.title') }}</p>
         <div class="w-20 h-1.5 bg-sky-600 mx-auto rounded-full"></div>
       </div>
 
@@ -66,18 +52,18 @@ const testimonials: Testimonial[] = [
           </div>
 
           <p class="text-lg italic dark:text-slate-300 text-slate-600 mb-8 leading-relaxed">
-            "{{ testimonial.comment }}"
+            "{{ rt(testimonial.comment) }}"
           </p>
 
           <div class="flex items-center gap-4 mt-auto">
             <img 
               :src="testimonial.image" 
-              :alt="testimonial.name"
+              :alt="rt(testimonial.name)"
               class="w-12 h-12 rounded-full object-cover ring-2 ring-sky-500/20"
             />
             <div>
-              <h4 class="font-bold dark:text-white text-slate-900">{{ testimonial.name }}</h4>
-              <p class="text-sm dark:text-slate-500 text-slate-500">{{ testimonial.role }}</p>
+              <h4 class="font-bold dark:text-white text-slate-900">{{ rt(testimonial.name) }}</h4>
+              <p class="text-sm dark:text-slate-500 text-slate-500">{{ rt(testimonial.role) }}</p>
             </div>
           </div>
         </div>

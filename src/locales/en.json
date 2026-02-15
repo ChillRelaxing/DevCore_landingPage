@@ -1,0 +1,156 @@
+{
+  "nav": {
+    "services": "Services",
+    "industry": "Industry",
+    "about": "About Us",
+    "stats": "Stats",
+    "projects": "Projects",
+    "testimonials": "Testimonials",
+    "careers": "Careers",
+    "insights": "Insights",
+    "contact": "Contact",
+    "news": "News"
+  },
+  "hero": {
+    "badge": "BUILDING THE DIGITAL FUTURE",
+    "title1": "Elite Software",
+    "title2": "Engineering",
+    "description": "At DevCore, we transform complex ideas into exceptional digital solutions. From disruptive startups to global enterprises, we power your growth with cutting-edge technology.",
+    "cta": "View Projects"
+  },
+  "services": {
+    "badge": "Services",
+    "title": "End-to-End Solutions",
+    "web": {
+      "title": "Custom Web Development",
+      "description": "We create robust and scalable platforms using the latest technologies."
+    },
+    "mobile": {
+      "title": "Mobile Apps",
+      "description": "High-performance native and hybrid experiences for iOS and Android."
+    },
+    "cloud": {
+      "title": "Cloud Infrastructure",
+      "description": "Server implementation, continuous deployment, and scalable architecture."
+    },
+    "uiux": {
+      "title": "UI/UX Design",
+      "description": "Designing intuitive interfaces and memorable user experiences."
+    }
+  },
+  "industries": {
+    "badge": "Industries",
+    "title": "Experts in high-demand vertical markets",
+    "description": "We understand the specific challenges of each sector. Our experience allows us to accelerate development with proven architectures adapted to the regulations of each industry.",
+    "items": {
+      "dte": "DTE-System",
+      "ecommerce": "E-commerce",
+      "logistics": "Logistics",
+      "bigdata": "Big Data"
+    }
+  },
+  "about": {
+    "badge": "About Us",
+    "title": "Obsessed with Quality and Clean Code",
+    "description": "DevCore was born with a clear mission: to raise the standard of software development in the region. We are not just an agency, we are a technological partner committed to the long-term success of our clients.",
+    "mission": {
+      "title": "Mission",
+      "description": "To drive digital transformation through innovative, scalable, and high-quality technological solutions that generate a real impact."
+    },
+    "vision": {
+      "title": "Vision",
+      "description": "To be the leading global technological partner, recognized for engineering excellence and the ability to solve the most complex challenges."
+    },
+    "productFirst": {
+      "title": "Product-First Mindset",
+      "description": "We don't just write code, we understand your business model."
+    },
+    "agile": {
+      "title": "Real Agile Methodologies",
+      "description": "Incremental deliveries every two weeks for maximum visibility."
+    }
+  },
+  "stats": {
+    "projects": "Finished Projects",
+    "clients": "Global Clients",
+    "success": "Success Rate",
+    "years": "Years of Innovation"
+  },
+  "projects": {
+    "badge": "Portfolio",
+    "title": "Featured Projects",
+    "viewAll": "View all success stories"
+  },
+  "testimonials": {
+    "badge": "Testimonials",
+    "title": "What they say about us",
+    "list": [
+      {
+        "name": "Ana García",
+        "role": "CEO of Nexus Bank",
+        "comment": "DevCore exceeded all our expectations. Their technical capacity is unmatched and they perfectly understood our vision from day one."
+      },
+      {
+        "name": "Carlos Ruiz",
+        "role": "CTO of HealthSync",
+        "comment": "A true technological partner. They delivered the project on time and with exceptional quality. The post-launch support has been impeccable."
+      },
+      {
+        "name": "Marta López",
+        "role": "Founder of EcoStream",
+        "comment": "The best decision we made for our cloud infrastructure. Highly recommended for their professionalism and attention to detail."
+      }
+    ]
+  },
+  "careers": {
+    "title": "Passionate about code?",
+    "description": "We are looking for exceptional talent to join our technological revolution. Work remotely, with the best benefits and a team that will challenge you every day.",
+    "cta": "See Open Vacancies"
+  },
+  "insights": {
+    "badge": "Insights",
+    "title": "Blog & Insights",
+    "posts": {
+      "wasm": {
+        "title": "The impact of WebAssembly on modern frontend development",
+        "description": "We explore how WASM is allowing high-performance applications to run in the browser..."
+      },
+      "remote": {
+        "title": "How we maintain cohesion in 100% remote teams",
+        "description": "Our best practices for fostering collaboration and a sense of belonging remotely..."
+      },
+      "nestjs": {
+        "title": "Scaling APIs with NestJS and Microservices",
+        "description": "A technical guide on design patterns for scalable and resilient architectures..."
+      }
+    }
+  },
+  "contact": {
+    "title": "Let's talk about your next big project",
+    "description": "We are ready to listen to you and turn your ideas into reality. Leave us a message and our team of experts will get in touch with you in less than 24 hours.",
+    "email": "Email",
+    "office": "Office",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "you@email.com",
+      "message": "Message",
+      "messagePlaceholder": "How can we help you?",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "successTitle": "Message Received!",
+      "successDescription": "Thanks for contacting us. We will respond as soon as possible.",
+      "sendAnother": "Send another message"
+    }
+  },
+  "footer": {
+    "description": "Engineering the digital future. Expert software development for visionary companies.",
+    "company": "Company",
+    "services": "Services",
+    "rights": "© 2026 DevCore Inc. All rights reserved.",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "cookies": "Cookies"
+  }
+}

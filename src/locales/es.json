@@ -1,0 +1,156 @@
+{
+  "nav": {
+    "services": "Servicios",
+    "industry": "Industria",
+    "about": "Sobre nosotros",
+    "stats": "Estadísticas",
+    "projects": "Proyectos",
+    "testimonials": "Testimonios",
+    "careers": "Empleos",
+    "insights": "Perspectivas",
+    "contact": "Contactar",
+    "news": "Noticias"
+  },
+  "hero": {
+    "badge": "CONSTRUYENDO EL FUTURO DIGITAL",
+    "title1": "Ingeniería de",
+    "title2": "Software de Élite",
+    "description": "En DevCore, transformamos ideas complejas en soluciones digitales excepcionales. Desde startups disruptivas hasta empresas globales, potenciamos tu crecimiento con tecnología de vanguardia.",
+    "cta": "Ver Proyectos"
+  },
+  "services": {
+    "badge": "Servicios",
+    "title": "Soluciones End-to-End",
+    "web": {
+      "title": "Desarrollo Web Custom",
+      "description": "Creamos plataformas robustas y escalables utilizando las últimas tecnologías."
+    },
+    "mobile": {
+      "title": "Apps Móviles",
+      "description": "Experiencias nativas e híbridas de alto rendimiento para iOS y Android."
+    },
+    "cloud": {
+      "title": "Infraestructura Cloud",
+      "description": "Implementación de servidores, despliegue continuo y arquitectura escalable."
+    },
+    "uiux": {
+      "title": "Diseño UI/UX",
+      "description": "Diseño de interfaces intuitivas y experiencias de usuario memorables."
+    }
+  },
+  "industries": {
+    "badge": "Industrias",
+    "title": "Expertos en mercados verticales de alta demanda",
+    "description": "Entendemos los retos específicos de cada sector. Nuestra experiencia nos permite acelerar el desarrollo con arquitecturas probadas y adaptadas a las regulaciones de cada industria.",
+    "items": {
+      "dte": "DTE-System",
+      "ecommerce": "E-commerce",
+      "logistics": "Logística",
+      "bigdata": "Big Data"
+    }
+  },
+  "about": {
+    "badge": "Sobre Nosotros",
+    "title": "Obsesionados con la Calidad y el Código Limpio",
+    "description": "DevCore nació con una misión clara: elevar el estándar del desarrollo de software en la región. No somos solo una agencia, somos un socio tecnológico comprometido con el éxito a largo plazo de nuestros clientes.",
+    "mission": {
+      "title": "Misión",
+      "description": "Impulsar la transformación digital mediante soluciones tecnológicas innovadoras, escalables y de alta calidad que generen un impacto real."
+    },
+    "vision": {
+      "title": "Visión",
+      "description": "Ser el socio tecnológico líder global, reconocido por la excelencia en ingeniería y la capacidad de resolver los desafíos más complejos."
+    },
+    "productFirst": {
+      "title": "Mentalidad Product-First",
+      "description": "No solo escribimos código, entendemos tu modelo de negocio."
+    },
+    "agile": {
+      "title": "Metodologías Ágiles Reales",
+      "description": "Entregas incrementales cada dos semanas para máxima visibilidad."
+    }
+  },
+  "stats": {
+    "projects": "Proyectos Finalizados",
+    "clients": "Clientes Globales",
+    "success": "Tasa de Éxito",
+    "years": "Años de Innovación"
+  },
+  "projects": {
+    "badge": "Portafolio",
+    "title": "Proyectos Destacados",
+    "viewAll": "Ver todos los casos de éxito"
+  },
+  "testimonials": {
+    "badge": "Testimonios",
+    "title": "Lo que dicen de nosotros",
+    "list": [
+      {
+        "name": "Ana García",
+        "role": "CEO de Nexus Bank",
+        "comment": "DevCore superó todas nuestras expectativas. Su capacidad técnica es inigualable y entendieron perfectamente nuestra visión desde el primer día."
+      },
+      {
+        "name": "Carlos Ruiz",
+        "role": "CTO de HealthSync",
+        "comment": "Un socio tecnológico de verdad. Entregaron el proyecto a tiempo y con una calidad excepcional. El soporte post-lanzamiento ha sido impecable."
+      },
+      {
+        "name": "Marta López",
+        "role": "Founder de EcoStream",
+        "comment": "La mejor decisión que tomamos para nuestra infraestructura cloud. Muy recomendados por su profesionalidad y atención al detalle."
+      }
+    ]
+  },
+  "careers": {
+    "title": "¿Eres un apasionado del código?",
+    "description": "Estamos buscando talento excepcional para unirse a nuestra revolución tecnológica. Trabaja de forma remota, con los mejores beneficios y un equipo que te desafiará cada día.",
+    "cta": "Ver Vacantes Abiertas"
+  },
+  "insights": {
+    "badge": "Perspectivas",
+    "title": "Blog & Insights",
+    "posts": {
+      "wasm": {
+        "title": "El impacto de WebAssembly en el desarrollo frontend moderno",
+        "description": "Exploramos cómo WASM está permitiendo que aplicaciones de alto rendimiento se ejecuten en el navegador..."
+      },
+      "remote": {
+        "title": "Cómo mantenemos la cohesión en equipos 100% remotos",
+        "description": "Nuestras mejores prácticas para fomentar la colaboración y el sentido de pertenencia a distancia..."
+      },
+      "nestjs": {
+        "title": "Escalando APIs con NestJS y Microservicios",
+        "description": "Una guía técnica sobre patrones de diseño para arquitecturas escalables y resilientes..."
+      }
+    }
+  },
+  "contact": {
+    "title": "Hablemos de tu próximo gran proyecto",
+    "description": "Estamos listos para escucharte y convertir tus ideas en realidad. Déjanos un mensaje y nuestro equipo de expertos se pondrá en contacto contigo en menos de 24 horas.",
+    "email": "Email",
+    "office": "Oficina",
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "Tu nombre",
+      "email": "Email",
+      "emailPlaceholder": "tu@email.com",
+      "message": "Mensaje",
+      "messagePlaceholder": "¿En qué podemos ayudarte?",
+      "submit": "Enviar Mensaje",
+      "sending": "Enviando...",
+      "successTitle": "¡Mensaje Recibido!",
+      "successDescription": "Gracias por contactarnos. Te responderemos lo antes posible.",
+      "sendAnother": "Enviar otro mensaje"
+    }
+  },
+  "footer": {
+    "description": "Engineering the digital future. Expert software development for visionary companies.",
+    "company": "Compañía",
+    "services": "Servicios",
+    "rights": "© 2026 DevCore Inc. Todos los derechos reservados.",
+    "terms": "Términos",
+    "privacy": "Privacidad",
+    "cookies": "Cookies"
+  }
+}
