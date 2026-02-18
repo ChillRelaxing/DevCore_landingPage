@@ -4,6 +4,19 @@ import { useI18n } from 'vue-i18n'
 import Testimonials from './components/Testimonials.vue'
 import Stats from './components/Stats.vue'
 
+// Importación de imágenes locales de proyectos
+import nexusBankImg from './assets/img/projects/nexus-bank.jpg'
+import healthSyncImg from './assets/img/projects/healthsync.jpg'
+import ecoStreamImg from './assets/img/projects/ecostream.jpg'
+
+// Importaciones de otras secciones
+import heroImg from './assets/img/hero/dashboard.jpg'
+import team1Img from './assets/img/about/team-1.jpg'
+import team2Img from './assets/img/about/team-2.jpg'
+import techPostImg from './assets/img/blog/tech.jpg'
+import remotePostImg from './assets/img/blog/remote.jpg'
+import nestPostImg from './assets/img/blog/code.jpg'
+
 const { locale } = useI18n()
 
 const isDark = ref(
@@ -68,9 +81,9 @@ const services = [
 const industries = ['industries.items.dte', 'industries.items.ecommerce', 'industries.items.logistics', 'industries.items.bigdata']
 
 const projects = [
-  { name: 'Nexus Bank', category: 'Fintech', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800' },
-  { name: 'HealthSync', category: 'Healthcare', img: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800' },
-  { name: 'EcoStream', category: 'SaaS', img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800' },
+  { name: 'Nexus Bank', category: 'Fintech', img: nexusBankImg },
+  { name: 'HealthSync', category: 'Healthcare', img: healthSyncImg },
+  { name: 'EcoStream', category: 'SaaS', img: ecoStreamImg },
 ]
 
 const contactForm = ref({
@@ -108,19 +121,19 @@ const posts = [
     category: 'Tecnología',
     title: 'insights.posts.wasm.title',
     description: 'insights.posts.wasm.description',
-    img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800'
+    img: techPostImg
   },
   {
     category: 'Cultura',
     title: 'insights.posts.remote.title',
     description: 'insights.posts.remote.description',
-    img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800'
+    img: remotePostImg
   },
   {
     category: 'Tutorial',
     title: 'insights.posts.nestjs.title',
     description: 'insights.posts.nestjs.description',
-    img: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800'
+    img: nestPostImg
   }
 ]
 </script>
@@ -133,7 +146,7 @@ const posts = [
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-18 items-center gap-4">
           <div class="flex items-center gap-2 cursor-pointer group" @click="scrollToSection('hero')">
-            <img src="./assets/logo/logoOficial2.png" width="150px" alt="DevCore Logo" class="h-10 w-auto transition-transform group-hover:scale-105 dark:invert dark:hue-rotate-180" />
+            <img src="./assets/logo/logo-main.png" width="150px" alt="DevCore Logo" class="h-10 w-auto transition-transform group-hover:scale-105 dark:invert dark:hue-rotate-180" />
             <span class="text-2xl font-black tracking-tighter dark:text-white text-slate-900 transition-colors">DEVCORE</span>
           </div>
 
@@ -238,7 +251,7 @@ const posts = [
         </div>
         <div class="flex-1 relative">
           <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl border dark:border-slate-800 border-white/50 bg-slate-100/10 backdrop-blur-sm">
-            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1200" alt="Dashboard Preview" class="w-full opacity-90" />
+            <img :src="heroImg" alt="Dashboard Preview" class="w-full opacity-90" />
           </div>
           <div class="absolute -top-10 -right-10 w-40 h-40 bg-sky-600/20 rounded-full blur-3xl -z-10"></div>
           <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-600/20 rounded-full blur-3xl -z-10"></div>
@@ -307,14 +320,14 @@ const posts = [
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col lg:flex-row gap-20 items-center">
           <div class="flex-1 grid grid-cols-2 gap-4">
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600" class="rounded-3xl h-64 w-full object-cover" />
+            <img :src="team1Img" class="rounded-3xl h-64 w-full object-cover" />
             <div class="bg-sky-600 rounded-3xl h-64 flex flex-col items-center justify-center p-6 text-white text-center">
-              <span class="text-5xl font-black"><img class="invert" src="./assets/img/calidad.png" width="100px" alt=""></span>
+              <span class="text-5xl font-black"><img class="invert" src="./assets/img/ui/calidad.png" width="100px" alt=""></span>
             </div>
             <div class="bg-slate-200 dark:bg-slate-800 rounded-3xl h-64 flex flex-col items-center justify-center p-6 text-center">
-              <span class="text-5xl font-black"><img class="[filter:invert(48%)_sepia(70%)_saturate(2476%)_hue-rotate(167deg)_brightness(94%)_contrast(101%)]" src="./assets/img/codigo.png" width="100px" alt=""></span>
+              <span class="text-5xl font-black"><img class="[filter:invert(48%)_sepia(70%)_saturate(2476%)_hue-rotate(167deg)_brightness(94%)_contrast(101%)]" src="./assets/img/ui/codigo.png" width="100px" alt=""></span>
             </div>
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=600" class="rounded-3xl h-64 w-full object-cover" />
+            <img :src="team2Img" class="rounded-3xl h-64 w-full object-cover" />
           </div>
           <div class="flex-1">
             <h2 class="text-sky-500 font-bold uppercase tracking-widest text-sm mb-3">{{ $t('about.badge') }}</h2>
@@ -536,7 +549,7 @@ const posts = [
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
           <div class="col-span-1 lg:col-span-1">
             <div class="flex items-center gap-2 mb-6">
-              <img src="./assets/logo/logoOficial2.png" alt="DevCore Logo" class="h-10 w-auto invert hue-rotate-180" />
+              <img src="./assets/logo/logo-main.png" alt="DevCore Logo" class="h-10 w-auto invert hue-rotate-180" />
               <span class="text-2xl font-black tracking-tighter text-white">DEVCORE</span>
             </div>
             <p class="text-slate-400 text-sm leading-relaxed mb-6">

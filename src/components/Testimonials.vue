@@ -2,6 +2,10 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import user1Img from '../assets/img/testimonials/user-1.jpg'
+import user2Img from '../assets/img/testimonials/user-2.jpg'
+import user3Img from '../assets/img/testimonials/user-3.jpg'
+
 const { tm, rt } = useI18n()
 
 const testimonials = computed(() => {
@@ -9,11 +13,7 @@ const testimonials = computed(() => {
   return list.map((item, index) => ({
     ...item,
     rating: index === 2 ? 4 : 5, // Keeping the same ratings as before
-    image: [
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150',
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150',
-      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150'
-    ][index]
+    image: [user1Img, user2Img, user3Img][index]
   }))
 })
 </script>
