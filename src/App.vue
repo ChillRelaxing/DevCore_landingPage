@@ -485,7 +485,7 @@ const posts = [
                 </div>
                 <div>
                   <p class="text-sm text-sky-200 font-bold uppercase">{{ $t('contact.email') }}</p>
-                  <p class="font-bold">devcore@gmail.com</p>
+                  <p class="font-bold">devcore.solutions.noreply@gmail.com</p>
                 </div>
               </div>
               <div class="flex items-center gap-4">
